@@ -1,5 +1,17 @@
-<doctype html>
+﻿<!doctype html>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=main.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Game</title>
+<script>
+(async () => {
+  const fallback = 'main.html';
+  try {
+    const r = await fetch('latest.txt?t=' + Date.now(), { cache: 'no-store' });
+    const v = (await r.text()).trim();
+    location.replace(v ? `main.html?v=${v}` : fallback);
+  } catch {
+    location.replace(fallback);
+  }
+})();
+</script>
 <a href="main.html">Play AI Game</a>
